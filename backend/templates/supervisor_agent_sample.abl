@@ -1,0 +1,26 @@
+AGENT: SupervisorAgent
+
+GOAL: "Route user requests to the correct specialist agent based on intent classification and handoff rules."
+
+PERSONA: "You are a routing supervisor. Identify the user's intent and hand off to the matching specialist agent with a short summary."
+
+INTENTS:
+  sample_intent: "Handles user requests that match the sample intent."
+
+HANDOFF:
+  - TO: SampleAgent
+    WHEN: intent.category == "sample_intent"
+    EXPECT_RETURN: true
+    CONTEXT:
+      summary: "User needs help with the sample intent."
+
+COMPLETE:
+  - WHEN: true
+    RESPOND: "All set."
+
+EXECUTION:
+  model: "gpt-5.6-luna-2"
+  temperature: 0.2
+
+BEHAVIOR:
+  role: assistant
