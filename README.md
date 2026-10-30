@@ -30,32 +30,11 @@ Full-stack utility that converts AppDefinition/BotDefinition ZIP archives into A
 2. Create a backend/.env file with the required variables:
 
    ```env
-   LLM_API_KEY=your_api_key
-   AZURE_OPENAI_DOMAIN=your_azure_openai_domain
-   AZURE_OPENAI_API_VERSION=your_api_version
-   LLM_MODEL_NAME=your_model_name
-   # Optional overrides
-   LLM_COOKIE=
-   ABL_MODEL=
-   REASONING_MODEL=
-   FLOW_MODEL=
    MAX_CONCURRENT_LLM_CALLS=4
    SESSION_TTL_SECONDS=86400
    VERIFY_ENABLED=true
-   # Shared-password access control
-   APP_PASSWORD_HASH=your_bcrypt_hash
-   # Optional: separate admin password
-   APP_ADMIN_PASSWORD_HASH=
-   # Session signing secret
-   SESSION_SECRET=your_random_secret
-   AUTH_SESSION_TTL_SECONDS=28800
-   AUTH_COOKIE_NAME=app_session
-   AUTH_COOKIE_SAMESITE=lax
-   AUTH_COOKIE_SECURE=
-   SHARED_USER_EMAIL=team@local
-   SHARED_ADMIN_EMAIL=admin@local
-   ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
-   RATE_LIMIT_PER_MINUTE=60
+   SESSION_SECRET=change-me-to-a-long-random-string
+   APP_PASSWORD_HASH=<add the hash key here>
    ```
 
    Generate a bcrypt hash for the shared password:
@@ -94,9 +73,6 @@ Full-stack utility that converts AppDefinition/BotDefinition ZIP archives into A
 
 Frontend runs at http://localhost:5173 and is configured to call the backend on http://localhost:8000.
 
-## Shared Password Notes
-
-- Shared Password Key: "mphasis_kore_automation"
 
 
 ## Build
