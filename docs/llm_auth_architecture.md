@@ -66,8 +66,8 @@ sequenceDiagram
 - If no key is set, an ephemeral key is generated per process (dev only).
 
 ## Security Controls
-- Shared password is stored as bcrypt hash in APP_PASSWORD_HASH.
-- Optional admin password hash in APP_ADMIN_PASSWORD_HASH.
+- Shared password is stored as a bcrypt hash constant (APP_PASSWORD_HASH) in backend/src/config.py; it is not read from .env.
+- Optional admin password hash constant APP_ADMIN_PASSWORD_HASH in the same file.
 - Sessions are signed with SESSION_SECRET.
 - Session cookies are HTTP-only and respect SameSite/secure settings.
 - Rate limiting is enforced per client IP and action.
@@ -76,7 +76,7 @@ sequenceDiagram
 ## Relevant Configuration
 - LLM keys and defaults: LLM_API_KEY, AZURE_OPENAI_DOMAIN, AZURE_OPENAI_API_VERSION, LLM_MODEL_NAME
 - BYOK encryption: CREDENTIAL_ENCRYPTION_KEY, CREDENTIAL_TTL_SECONDS
-- Shared auth: APP_PASSWORD_HASH, APP_ADMIN_PASSWORD_HASH, SESSION_SECRET
+- Shared auth: SESSION_SECRET (hashes are constants in config.py)
 - Session: AUTH_SESSION_TTL_SECONDS, AUTH_COOKIE_NAME, AUTH_COOKIE_SAMESITE, AUTH_COOKIE_SECURE
 - CORS: ALLOWED_ORIGINS
 - Rate limiting: RATE_LIMIT_PER_MINUTE

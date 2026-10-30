@@ -5,6 +5,10 @@ import os
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+# Fixed in code on purpose: not overridable via .env, so only the shared password logs in.
+APP_PASSWORD_HASH = "$2b$12$H6C5BKbsAWLA4KFNmQsxHu7roUeAsIIOpL/y8ZiaY9xfTs5Fqnmk2"
+APP_ADMIN_PASSWORD_HASH: str | None = None
+
 
 class Settings(BaseSettings):
     llm_api_key: str | None = Field(default=None, alias="LLM_API_KEY")
@@ -22,8 +26,6 @@ class Settings(BaseSettings):
     verify_enabled: bool = Field(default=True, alias="VERIFY_ENABLED")
     llm_timeout_seconds: int = Field(default=180, alias="LLM_TIMEOUT_SECONDS")
     rate_limit_per_minute: int = Field(default=60, alias="RATE_LIMIT_PER_MINUTE")
-    app_password_hash: str | None = Field(default=None, alias="APP_PASSWORD_HASH")
-    app_admin_password_hash: str | None = Field(default=None, alias="APP_ADMIN_PASSWORD_HASH")
     session_secret: str | None = Field(default=None, alias="SESSION_SECRET")
     auth_session_ttl_seconds: int = Field(default=28800, alias="AUTH_SESSION_TTL_SECONDS")
     auth_cookie_name: str = Field(default="app_session", alias="AUTH_COOKIE_NAME")

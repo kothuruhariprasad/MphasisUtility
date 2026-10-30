@@ -18,7 +18,7 @@ from fastapi import Depends, Header, HTTPException, Request
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 
-from src.config import settings
+from src.config import APP_ADMIN_PASSWORD_HASH, APP_PASSWORD_HASH, settings
 
 
 @dataclass(frozen=True)
@@ -89,12 +89,9 @@ def _verify_password(password: str, password_hash: str) -> bool:
 
 
 def authenticate_password(password: str) -> Tuple[str, str]:
-    if not settings.app_password_hash and not settings.app_admin_password_hash:
-        raise HTTPException(status_code=500, detail="APP_PASSWORD_HASH is not configured")
-
-    if settings.app_admin_password_hash and _verify_password(password, settings.app_admin_password_hash):
+    if APP_ADMIN_PASSWORD_HASH and _verify_password(password, APP_ADMIN_PASSWORD_HASH):
         return settings.shared_admin_email, "admin"
-    if settings.app_password_hash and _verify_password(password, settings.app_password_hash):
+    if _verify_password(password, APP_PASSWORD_HASH):
         return settings.shared_user_email, "user"
 
     raise HTTPException(status_code=401, detail="Invalid password")

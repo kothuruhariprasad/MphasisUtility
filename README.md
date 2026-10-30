@@ -34,14 +34,9 @@ Full-stack utility that converts AppDefinition/BotDefinition ZIP archives into A
    SESSION_TTL_SECONDS=86400
    VERIFY_ENABLED=true
    SESSION_SECRET=change-me-to-a-long-random-string
-   APP_PASSWORD_HASH=<add the hash key>
    ```
 
-   Generate a bcrypt hash for the shared password:
-
-   ```bash
-   python -c "from passlib.context import CryptContext; print(CryptContext(schemes=['bcrypt'], deprecated='auto').hash('your-shared-password'))"
-   ```
+   The shared-password hash is fixed in `backend/src/config.py` (`APP_PASSWORD_HASH`); ask the owner for the password.
 
 3. Start the API server:
 
