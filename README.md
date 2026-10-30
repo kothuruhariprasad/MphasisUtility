@@ -23,7 +23,7 @@ Full-stack utility that converts AppDefinition/BotDefinition ZIP archives into A
    ```bash
    cd backend
    python -m venv .venv
-   . .venv/Scripts/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
+   .\.venv/Scripts/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
    pip install -r requirements.txt
    ```
 
@@ -87,14 +87,17 @@ Full-stack utility that converts AppDefinition/BotDefinition ZIP archives into A
    ```bash
    npm run dev
    ```
+## Backend
+1. Run the virtual env
+2. uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+
 
 Frontend runs at http://localhost:5173 and is configured to call the backend on http://localhost:8000.
 
 ## Shared Password Notes
 
-- Store the shared password hash and session secret only in server-side environment variables.
-- Rotate `APP_PASSWORD_HASH` (and `APP_ADMIN_PASSWORD_HASH` if used) when access changes.
-- Rotate `SESSION_SECRET` to revoke existing sessions immediately.
+- Shared Password Key: "mphasis_kore_automation"
+
 
 ## Build
 
